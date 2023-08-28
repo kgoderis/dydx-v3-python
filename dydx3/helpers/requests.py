@@ -21,6 +21,10 @@ class Response(object):
 
 
 def request(uri, method, headers=None, data_values={}, api_timeout=None):
+
+    print("Data "+json.dumps(
+            remove_nones(data_values)))
+
     response = send_request(
         uri,
         method,

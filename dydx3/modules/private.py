@@ -65,6 +65,13 @@ class Private(object):
             'DYDX-TIMESTAMP': now_iso_string,
             'DYDX-PASSPHRASE': self.api_key_credentials['passphrase'],
         }
+
+        # print("host.path "+ self.host + request_path)
+        # for keys,values in headers.items():
+        #     print(keys + " " + values)
+        # for keys,values in data.items():
+        #     print(keys + " " + values)
+
         return request(
             self.host + request_path,
             method,
@@ -568,7 +575,9 @@ class Private(object):
                 limit_fee=limit_fee,
                 expiration_epoch_seconds=expiration_epoch_seconds,
             )
-            order_signature = order_to_sign.sign(self.stark_private_key)
+            order_signature = order_to_sign.sign(self.stark_private_key['private_key'])
+
+            print("signature is "+order_signature)
 
         order = {
             'market': market,

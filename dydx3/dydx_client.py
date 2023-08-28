@@ -53,11 +53,12 @@ class Client(object):
             get_cpp_lib(crypto_c_exports_path)
 
         if web3 is not None or web3_provider is not None:
-            if isinstance(web3_provider, str):
-                web3_provider = Web3.HTTPProvider(
-                    web3_provider, request_kwargs={'timeout': self.api_timeout}
-                )
-            self.web3 = web3 or Web3(web3_provider)
+            # if isinstance(web3_provider, str):
+            #     web3_provider = Web3.HTTPProvider(
+            #         web3_provider, request_kwargs={'timeout': self.api_timeout}
+            #     )
+            # self.web3 = web3 or Web3(web3_provider)
+            self.web3 = web3
             self.eth_signer = SignWithWeb3(self.web3)
             self.default_address = self.web3.eth.defaultAccount or None
             self.network_id = self.web3.net.version
